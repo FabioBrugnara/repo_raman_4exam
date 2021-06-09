@@ -3,6 +3,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
+import seaborn as sns
 
 def raman_plot():
     """
@@ -53,3 +54,45 @@ def import_pure_spectra(element_list,directory):
     
     pure_materials.drop('empty', axis = 1,inplace=True)
     return pure_material_names,pure_materials
+
+def cluster_plot(names,labels,data):
+    """
+    Plot dei clusters.
+    data: solito formato dei sample, prima colonna i wn e poi le colonne r1c1, r2c1, ....
+    labels: risultato del clustering
+    """
+    fig1, axs1 = plt.subplots(len(np.unique(labels)),figsize = (16,30))
+    for i in enumerate(np.unique(labels)):
+        for temp in enumerate(labels):
+            if temp[1]==i[1]:
+                axs1[i[0]].plot(data.wn,data[names[temp[0]+1]])
+                axs1[i[0]].set_title('Cluster ' + str(i[1]))
+
+def grid_plot(label,row=11,col=11):
+    """
+    Plot dei cluster in una griglia row x columns
+    label: le label dei cluster
+    """
+    XX=list((np.array(range(col))+1))*row
+    YY=[]
+    for i in range(row):
+        YY.extend(list(np.ones(col)*(i+1)))
+    d = {'X': XX, 'Y': YY,'labels':label}
+
+    grid = pd.DataFrame(data=d)
+
+    font ={'size': 15,
+        'weight': 'regular',
+        'family':'DejaVu Sans'}
+
+    plt.rc('font', **font)
+    sns.relplot(
+        data=grid,
+        x="X", y="Y",
+        hue="labels",
+        palette=("Set2"),
+        legend = "full",
+        aspect=1,
+        height=10,
+        s = 5000,
+    );
