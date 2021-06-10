@@ -93,6 +93,6 @@ def grid_plot(label,row=11,col=11):
         palette=("Set2"),
         legend = "full",
         aspect=1,
-        height=10,
-        s = 5000,
+        height=5,
+        s = 1000,
     );
