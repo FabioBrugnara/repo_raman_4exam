@@ -18,6 +18,12 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+## run all the analysis
+eda_cluster_fit:
+	cd repo_raman/auto_analysis/ ; \
+		$(PYTHON_INTERPRETER) script_eda.py
+
+
 ## Install Python Dependencies
 requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel

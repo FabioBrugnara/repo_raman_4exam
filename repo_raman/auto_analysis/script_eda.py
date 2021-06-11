@@ -2,10 +2,9 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import sys
-
-sys.path.append('~/Desktop/repo_raman/')
-from functions.functions import *
-
+#sys.path.append('~/Desktop/repo_raman/')
+#from functions.functions import *
+from functions import *
 font = {'size': 15}
 
 data_name = input("\nInsert the name of your data, the data should be placed in the path './data/raw'. \nPress 'enter' for default value -> 'S1_map_A_11x11.txt'.\nOtherwise type the name of your data:")
