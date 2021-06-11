@@ -50,7 +50,7 @@ def import_pure_spectra(element_list,directory):
     pure_materials = pd.DataFrame(np.zeros(max_size),columns=['empty'])
     # importiamo i dati: nome_I (intensità) e nome_wn
     for i in range(len(pure_material_names)):
-        pure_materials=pure_materials.join(pd.read_csv('../data/raw/Database Raman/'+pure_material_names[i]+'.txt', delim_whitespace=True, names=[pure_material_names[i]+'_wn',pure_material_names[i]+'_I']))
+        pure_materials=pure_materials.join(pd.read_csv('../../data/raw/Database Raman/'+pure_material_names[i]+'.txt', delim_whitespace=True, names=[pure_material_names[i]+'_wn',pure_material_names[i]+'_I']))
     
     pure_materials.drop('empty', axis = 1,inplace=True)
     return pure_material_names,pure_materials
