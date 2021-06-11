@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 from functions import define_names, import_pure_spectra, raman_plot
 font = {'size': 15}
 
-data_name = input("\nInsert the name of your data, the data should be placed in the path './data/raw'. \nPress 'enter' for default value -> 'S1_map_A_11x11.txt'.\nOtherwise type the name of your data:")
+data_name = input("\nInsert the name of your data, the data should be placed in the path './data/raw'. \nPress 'enter' for default value -> 'S1_bkg_mapA_11x11.txt'.\nOtherwise type the name of your data:")
 if len(data_name) < 1:
     data_name = "S1_bkg_mapA_11x11.txt"
 

@@ -18,6 +18,14 @@ endif
 # COMMANDS                                                                      #
 #################################################################################
 
+## visualize data and create a HTML files from notebooks named "report.html"
+visualization:
+	cd reports;\
+	jupyter nbconvert --to notebook --execute --inplace report.ipynb;\
+	jupyter nbconvert --to html report.ipynb;\
+	echo "\nIf firefox is not installed open the file 'report.html' whith your browser\n";\
+	firefox report.html;\
+
 ## run all the analysis
 eda_cluster_fit:
 	cd repo_raman/auto_analysis/ ; \
