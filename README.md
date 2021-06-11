@@ -1,56 +1,23 @@
-Riconoscimento di spettri Raman
-==============================
+# Progetto di Data Science: Analisi di spettri Raman
+*Fabio Brugnara e Andrea Pegoretti*
 
-Il progetto riguarda il riconoscimento di materiali tramite gli spettri Raman.
+In questo progetto abbiamo lavorato con gli spettri Raman eseguiti su un campione di materiale incognito. Lo scopo del progetto è quello di identificare la composizione del materiale sfruttando gli spettri di diversi materiali puri.
 
-Project Organization
-------------
+Una spiegazione dettagliata del progetto e dei suoi vari step è contenuta nei notebooks [EDA.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/EDA.ipynb), [CLUSTERING.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/CLUSTERING.ipynb) e [FIT.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/FIT.ipynb) (in './notebooks'). Qui abbiamo utilizzato il primo set di dati (S1) presente nella cartella './data/raw'. Per comprendere a fondo il progetto fare riferimento a questi notebooks.
 
-    ├── LICENSE
-    ├── Makefile           <- Makefile with commands like `make data` or `make train`
-    ├── README.md          <- The top-level README for developers using this project.
-    ├── data
-    │   ├── external       <- Data from third party sources.
-    │   ├── interim        <- Intermediate data that has been transformed.
-    │   ├── processed      <- The final, canonical data sets for modeling.
-    │   └── raw            <- The original, immutable data dump.
-    │
-    ├── docs               <- A default Sphinx project; see sphinx-doc.org for details
-    │
-    ├── models             <- Trained and serialized models, model predictions, or model summaries
-    │
-    ├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-    │                         the creator's initials, and a short `-` delimited description, e.g.
-    │                         `1.0-jqp-initial-data-exploration`.
-    │
-    ├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-    │
-    ├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-    │   └── figures        <- Generated graphics and figures to be used in reporting
-    │
-    ├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-    │                         generated with `pip freeze > requirements.txt`
-    │
-    ├── setup.py           <- makes project pip installable (pip install -e .) so src can be im
-    │
-    └─ src                <- Source code for use in this project.
-       ├── __init__.py    <- Makes src a Python module
-       │
-       ├── data           <- Scripts to download or generate data
-       │   └── make_dataset.py
-       │
-       ├── features       <- Scripts to turn raw data into features for modeling
-       │   └── build_features.py
-       │
-       ├── models         <- Scripts to train models and then use trained models to make
-       │   │                 predictions
-       │   ├── predict_model.py
-       │   └── train_model.py
-       │
-       └── visualization  <- Scripts to create exploratory and results oriented visualizations
-           └── visualize.py
+In questi notebooks si trova
 
+1. l'**Exploratory Data Analysis** e la preparazione dei dati ([EDA.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/EDA.ipynb))
+2. il **clustering** degli spettri utilizzato per verificare se esiste una correlazione spaziale tra gli spettri e per preparare i dati al fit ([CLUSTERING.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/CLUSTERING.ipynb))
+3. il fit agli spettri puri e il risultato finale: **le abbondanze presenti nel campione** ([FIT.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/FIT.ipynb))
 
---------
+## Automatizzazione con make
 
-<p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+Abbiamo infine implementato un'automatizzazione dell'analisi utilizzando make.
+
+- **make eda_cluster_fit**	Effettua tutta l'analisi in automatico, richiede di inserire il nome del file di dati da utilizzare (dati con background rimosso), che deve essere inserito nella directory ./data/raw (con invio si utilizza i dati del sample S1 di default). Il file dei dati deve essere strutturato come quelli già presenti (vedi [EDA.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/notebooks/EDA.ipynb))
+- **make visualization** Fa il run di [report.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/report/report.ipynb) ('./report'), che è il notebook contenente l'Exploratory Data Analysis e la presentazione dei risultati provenienti dall'analisi automatizzata effettuata con il comando **make eda_cluster_fit**. Salva inoltre il notebook nella stessa cartella in formato html. Infine, se firefox è installato sul computer, lo apre in automatico.
+- **make create_environment** Genera l'envirorment conda con il corretto interprete python
+- **make test_environment** Verifica se l'envirorment è settato correttamente
+- **make requirements** Installa le dipendenze necessarie
+
