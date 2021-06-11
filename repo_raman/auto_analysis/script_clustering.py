@@ -1,13 +1,11 @@
-from matplotlib.markers import MarkerStyle
 import numpy as np
 import pandas as pd
-from sklearn.cluster import DBSCAN, KMeans
+from sklearn.cluster import  KMeans
 import matplotlib.pyplot as plt
-from matplotlib import colors, rc
 import seaborn as sns
 from pysal.lib.weights import lat2W 
 from pysal.explore.esda import Moran
-from functions import define_names, grid_plot, import_pure_spectra, raman_plot,cluster_plot
+from functions import define_names, grid_plot, cluster_plot
 
 names=define_names()
 data = pd.read_csv("../data/EDA_processed_data.csv")
