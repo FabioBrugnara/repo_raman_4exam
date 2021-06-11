@@ -38,7 +38,7 @@ plt.savefig("../../reports/figures/first_spectrums.png",format = 'png')
 raman_plot()
 plt.rc('font',**font)
 for temp in names[1:]:
-    plt.plot(data.wn,data[temp]);
+    plt.plot(data.wn,data[temp])
 plt.savefig("../../reports/figures/all_spectrums.png",format = 'png')
 
 # rimozione dell'offset
