@@ -21,7 +21,9 @@ endif
 ## run all the analysis
 eda_cluster_fit:
 	cd repo_raman/auto_analysis/ ; \
-		$(PYTHON_INTERPRETER) script_eda.py
+		$(PYTHON_INTERPRETER) script_eda.py;\
+		$(PYTHON_INTERPRETER) script_clustering.py;\
+		$(PYTHON_INTERPRETER) script_fit.py
 
 
 ## Install Python Dependencies
@@ -29,9 +31,7 @@ requirements: test_environment
 	$(PYTHON_INTERPRETER) -m pip install -U pip setuptools wheel
 	$(PYTHON_INTERPRETER) -m pip install -r requirements.txt
 
-## Make Dataset
-data: requirements
-	$(PYTHON_INTERPRETER) repo_raman/data/make_dataset.py data/raw data/processed
+
 
 ## Delete all compiled Python files
 clean:
