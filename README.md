@@ -19,7 +19,7 @@ Abbiamo infine implementato un'automatizzazione dell'analisi utilizzando make.
 
 - **make visualization** Fa il run di [report.ipynb](https://github.com/FabioBrugnara/repo_raman/blob/main/report/report.ipynb) ('./report'), che è il notebook contenente l'Exploratory Data Analysis e la presentazione dei risultati provenienti dall'analisi automatizzata effettuata con il comando **make eda_cluster_fit**. Salva inoltre il notebook nella stessa cartella in formato html. Infine, se firefox è installato sul computer, lo apre in automatico.
 
-- **make create_environment** Se sul proprio computer e' presente un installazione conda eseguire con make questo comando altrimenti sara' necessario creare un environment virtuale con pyhton (per farlo e' necessario avere installato pip). Per inizializzare l'environment eseguire sulla shell i seguenti comandi.
+- **make create_environment** Se sul proprio computer e' presente un installazione conda eseguire con make questo comando altrimenti sara' necessario creare un environment virtuale con pyhton (per farlo e' necessario avere installato pip). Per inizializzare l'environment eseguire sulla shell i seguenti comandi. Per creare l'environment virtuale bisogna specificare un path, il seguente comando ne crea uno chiamato "name_of_the_env" nella cartella corrente.
 ```console
     pip install virtualenv
     virtualenv name_of_the_env
