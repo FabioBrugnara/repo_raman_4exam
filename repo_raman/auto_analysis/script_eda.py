@@ -7,9 +7,23 @@ import matplotlib.pyplot as plt
 from functions import define_names, import_pure_spectra, raman_plot
 font = {'size': 15}
 
-data_name = input("\nInsert the name of your data, the data should be placed in the path './data/raw'. \nPress 'enter' for default value -> 'S1_bkg_mapA_11x11.txt'.\nOtherwise type the name of your data:")
-if len(data_name) < 1:
+data_name = input("\nInsert the name of your data, the data should be placed in the path './data/raw'. \nPress 1 for default value -> 'S1_bkg_mapA_11x11.txt'\nPress 2 for default value -> 'S2_bkg_mapA_11x11.txt'.\nOtherwise type the name of your data:")
+if data_name == '1':
     data_name = "S1_bkg_mapA_11x11.txt"
+if data_name == '2':
+    data_name = "S2_bkg_mapA_11x11.txt"
+
+
+elimina = input("\nDo you want to use the 'elimination of non physical spectrums' (see the EDA notebook for details) (recommended for S2, bad datas)? (y/n)")
+if elimina=='y':
+    bb = input("\nSet the bound for the 'non physical spectrum selection' made on the tail of the spectrums'(see the EDA notebook for details)? (enter for default: bound=0.001)")
+    if len(bb)<1:
+        bb=0.001
+    else:
+        bb=float(bb)
+    
+
+
 
 raw_data_path = "../../data/raw/" + data_name
 names=define_names()
@@ -54,5 +68,13 @@ for temp in names[1:]:
 # normalizzazione spettri sample
 for i in names[1:]:
     data[i]=data[i]/np.trapz(abs(data[i][:element_soglia]), x=data['wn'][0:element_soglia])
+
+# eliminazione spettri brutti
+if elimina=='y':
+    for temp in names[1:]:
+        maxx=max(data[temp][element_soglia:])
+        if maxx>bb :
+            for i in enumerate(data[temp]):
+                data[temp][i[0]]=0
 
 data[0:element_soglia].to_csv("../data/EDA_processed_data.csv")
