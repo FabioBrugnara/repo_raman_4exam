@@ -42,8 +42,6 @@ grid_plot(labels_moran)
 plt.savefig("../../reports/figures/correlation_grid.png",format = 'png')
 
 # Ineritia
-cluster_KM = KMeans(n_clusters=6,max_iter=6000,tol=1e-4)
-cluster_KM.fit(data_t)
 
 # calcolo l'inertia per vari numeri di cluster
 n_cluster=30 # max number of clusters

@@ -39,6 +39,14 @@ plt.savefig("../../reports/figures/final_FIT.png",format = 'png')
 
 # determinazione abbondanza materiale
 
+#elimino il cluster a 0 (se presente) e normalizzare i coefficienti per ogni cluster
+for temp in np.unique(labels):
+    if max(data[str(int(temp))])>1e-10:
+        coeff[int(temp)]=coeff[int(temp)]/sum(coeff[int(temp)])
+    else:
+        print(f'Identificato lo spettro piatto, non utilizzato il cluster {int(temp)}')
+        coeff[int(temp)]=np.zeros(len(coeff[int(temp)]))
+
 weights=[np.count_nonzero(labels==i) for i in range(len(data.columns)-1)]
 abb_notnormalized=[coeff[i]*weights[i] for i in range(len(data.columns)-1)]
 abb=sum(abb_notnormalized)/(sum(abb_notnormalized).sum())
