@@ -3,6 +3,8 @@ import pandas as pd
 from sklearn.cluster import  KMeans
 import matplotlib.pyplot as plt
 import seaborn as sns
+import warnings
+warnings.simplefilter("ignore", UserWarning)
 from pysal.lib.weights import lat2W 
 from pysal.explore.esda import Moran
 from functions import define_names, grid_plot, cluster_plot
