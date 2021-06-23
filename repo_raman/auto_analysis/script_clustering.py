@@ -48,7 +48,7 @@ plt.savefig("../../reports/figures/correlation_grid.png",format = 'png')
 # calcolo l'inertia per vari numeri di cluster
 n_cluster=30 # max number of clusters
 inertia=[]
-bound = 0.001
+bound = 0.006
 cluster_KM = KMeans(n_clusters = 2,max_iter=6000,tol=1e-4)
 cluster_KM.fit(data_t)
 N_cluster=[]
